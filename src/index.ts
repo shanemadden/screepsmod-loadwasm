@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 interface BotModules {
-  [key: string]: string | {binary: string};
+  [key: string]: string | { binary: string };
 }
 
 export default function (config: ServerConfig) {
@@ -11,9 +11,9 @@ export default function (config: ServerConfig) {
     // Replace the loadBot function in the default backend
     // https://github.com/screeps/backend-local/blob/1ffc31fc8f2af538c2cdfe92b45299d4a7b86f3e/lib/utils.js#L250
     // with one compatible with .wasm files
-    utils.loadBot = function(name: string) {
+    utils.loadBot = function (name: string) {
       var dir = config.common.bots[name];
-      if(!dir) {
+      if (!dir) {
         throw new Error(`Bot AI with the name "${name}" doesn't exist`);
       }
       var stat = fs.statSync(dir);
@@ -21,16 +21,17 @@ export default function (config: ServerConfig) {
         throw new Error(`"${dir}" is not a directory`);
       }
       fs.statSync(path.resolve(dir, 'main.js'));
-      var files = fs.readdirSync(dir), modules: BotModules = {};
+      var files = fs.readdirSync(dir),
+        modules: BotModules = {};
       files.forEach((file: string) => {
         var m = file.match(/^(.*)\.js$/);
-        if(m) {
-          modules[m[1]] = fs.readFileSync(path.resolve(dir, file), {encoding: 'utf8'});
+        if (m) {
+          modules[m[1]] = fs.readFileSync(path.resolve(dir, file), { encoding: 'utf8' });
         } else {
           var wm = file.match(/^(.*)\.wasm$/);
-          if(wm) {
+          if (wm) {
             modules[wm[1]] = {
-              binary: fs.readFileSync(path.resolve(dir, file), {encoding: 'base64'}),
+              binary: fs.readFileSync(path.resolve(dir, file), { encoding: 'base64' }),
             };
           }
         }
