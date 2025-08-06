@@ -22,7 +22,7 @@ export default function (config: ServerConfig) {
       }
       fs.statSync(path.resolve(dir, 'main.js'));
       var files = fs.readdirSync(dir), modules: BotModules = {};
-      files.forEach((file: String) => {
+      files.forEach((file: string) => {
         var m = file.match(/^(.*)\.js$/);
         if(m) {
           modules[m[1]] = fs.readFileSync(path.resolve(dir, file), {encoding: 'utf8'});
