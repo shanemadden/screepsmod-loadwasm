@@ -1,14 +1,13 @@
 {
   "name": "screepsmod-loadwasm",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Allows Screeps private servers to load .wasm files in bots configured as packages",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "rollup -c",
+    "dev": "rollup -cw",
+    "format": "prettier --write src/**/*.ts",
     "2npm": "publish"
-  },
-  "devDependencies": {
-    "publish": "^0.6.0"
   },
   "screeps_mod": true,
   "keywords": [
@@ -17,5 +16,18 @@
   ],
   "author": "Shane Madden",
   "license": "MIT",
-  "dependencies": {}
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^24.2.0",
+    "@types/screeps-server": "git://github.com/tiennou/typed-screeps-server.git",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "rollup": "^2.79.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.2"
+  }
 }
