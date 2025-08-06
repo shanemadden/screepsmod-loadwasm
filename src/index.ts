@@ -1,4 +1,4 @@
-const utils = require.main.require('@screeps/backend/lib/utils.js');
+const utils = require.main?.require('@screeps/backend/lib/utils.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,7 +11,7 @@ export default function (config: ServerConfig) {
     // Replace the loadBot function in the default backend
     // https://github.com/screeps/backend-local/blob/1ffc31fc8f2af538c2cdfe92b45299d4a7b86f3e/lib/utils.js#L250
     // with one compatible with .wasm files
-    utils.loadBot = function(name: String) {
+    utils.loadBot = function(name: string) {
       var dir = config.common.bots[name];
       if(!dir) {
         throw new Error(`Bot AI with the name "${name}" doesn't exist`);

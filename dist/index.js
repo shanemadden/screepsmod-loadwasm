@@ -1,6 +1,7 @@
 'use strict';
 
-const utils = require.main.require('@screeps/backend/lib/utils.js');
+var _a;
+const utils = (_a = require.main) === null || _a === void 0 ? void 0 : _a.require('@screeps/backend/lib/utils.js');
 const fs = require('fs');
 const path = require('path');
 function index (config) {
